@@ -15,13 +15,14 @@ namespace c_sharp_console_app_virtual_file_system
             while (_running)
             {
                 Print();
+                Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
+                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}: ");
                 GetUserInput();
             }
         }
 
         private void GetUserInput()
         {
-            Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
             string input = Console.ReadLine().ToLower();
 
             switch(input)
@@ -32,6 +33,9 @@ namespace c_sharp_console_app_virtual_file_system
                     break;
                 case "help":
                     _fss.Help();
+                    break;
+                case "ls":
+                    _fss.Ls();
                     break;
                 default:
                     Console.WriteLine("Invalid input");
