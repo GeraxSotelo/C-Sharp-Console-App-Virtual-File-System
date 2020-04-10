@@ -12,12 +12,30 @@ namespace c_sharp_console_app_virtual_file_system
 
         public void Run()
         {
-            _fss.AddTestMessages();
             while (_running)
             {
-                Console.WriteLine("Running...");
-                _running = false;
                 Print();
+                GetUserInput();
+            }
+        }
+
+        private void GetUserInput()
+        {
+            Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
+            string input = Console.ReadLine().ToLower();
+
+            switch(input)
+            {
+                case "q":
+                case "e":
+                    _running = false;
+                    break;
+                case "help":
+                    _fss.Help();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input");
+                    break;
             }
         }
 

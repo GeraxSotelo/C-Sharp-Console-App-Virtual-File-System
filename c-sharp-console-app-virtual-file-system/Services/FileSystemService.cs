@@ -13,11 +13,11 @@ namespace c_sharp_console_app_virtual_file_system.Services
             Messages = new List<string>();
         }
 
-        public void AddTestMessages()
+        public void Help()
         {
-            Messages.Add("First line");
-            Messages.Add("Second Line");
-            Messages.Add("Third Line");
+            Messages.Add("mkdir     Creates a directory.");
+            Messages.Add("ls        Lists files in current working directory");
+            Messages.Add("rm        Remove a file");
         }
 
     }
