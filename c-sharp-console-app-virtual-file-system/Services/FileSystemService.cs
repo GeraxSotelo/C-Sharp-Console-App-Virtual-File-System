@@ -1,4 +1,5 @@
-﻿using System;
+﻿using c_sharp_console_app_virtual_file_system.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,7 @@ namespace c_sharp_console_app_virtual_file_system.Services
 {
     class FileSystemService
     {
+        public IFileSystem fileSystem { get; set; }
         public List<string> Messages {get; set;}
 
         public FileSystemService()

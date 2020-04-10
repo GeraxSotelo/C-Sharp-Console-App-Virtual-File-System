@@ -7,8 +7,8 @@ namespace c_sharp_console_app_virtual_file_system
         static void Main(string[] args)
         {
             Console.Clear();
-            FileSystemController fs = new FileSystemController();
-            fs.Run();
+            FileSystemController fsc = new FileSystemController();
+            fsc.Run();
         }
     }
 }

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system.Interfaces
 {
-    interface IRootDirectory
+    interface IFileSystem
     {
-        public string Name { get; set; }
+        IDirectory CurrentDirectory { get; set; }
+
+        void Setup();
     }
 }
