@@ -21,6 +21,8 @@ namespace c_sharp_console_app_virtual_file_system.Models
             Root.Files.Add(TestFile);
 
             CurrentDirectory = Root;
+
+            Console.WriteLine("Welcome to the Virtual File System application.\n");
         }
 
         public FileSystem()

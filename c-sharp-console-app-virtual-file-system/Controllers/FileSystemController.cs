@@ -16,7 +16,7 @@ namespace c_sharp_console_app_virtual_file_system
             {
                 Print();
                 Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
-                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}: ");
+                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}/ # ");
                 GetUserInput();
             }
         }

@@ -6,4 +6,9 @@
     <RootNamespace>c_sharp_console_app_virtual_file_system</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="dapper" Version="2.0.35" />
+    <PackageReference Include="mysqlconnector" Version="0.63.2" />
+  </ItemGroup>
+
 </Project>
