@@ -23,13 +23,18 @@ namespace c_sharp_console_app_virtual_file_system
             }
         }
 
-        public string GetUserInput()
+        public void GetUserInput()
         {
             string input = Console.ReadLine().ToLower() + " ";
+            CheckInput(input);
+        }
+
+        public string CheckInput(string input)
+        {
             string command = input.Substring(0, input.IndexOf(" "));
             string option = input.Substring(input.IndexOf(" ") + 1).Trim();
 
-            switch(command)
+            switch (command)
             {
                 case "q":
                 case "e":
@@ -42,14 +47,14 @@ namespace c_sharp_console_app_virtual_file_system
                     _fss.Ls();
                     break;
                 case "mkdir":
-                    Directory data = new Directory(option) { ParentId = 3};
+                    Directory data = new Directory(option) { ParentId = 3 };
                     _fss.Mkdir(data);
                     break;
                 default:
                     Console.WriteLine("Invalid input");
                     break;
             }
-            return command;
+            return "success";
         }
 
         public void Print()

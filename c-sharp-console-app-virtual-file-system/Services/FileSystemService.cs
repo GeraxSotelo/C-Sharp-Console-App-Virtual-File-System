@@ -41,7 +41,7 @@ namespace c_sharp_console_app_virtual_file_system.Services
             }
         }
 
-        public void Mkdir(Directory data)
+        public int Mkdir(Directory data)
         {
             var con = fileSystem.getCon();
             string sql = @"
@@ -49,8 +49,9 @@ namespace c_sharp_console_app_virtual_file_system.Services
             (name, parentId)
             VALUES
             (@name, @parentId);
-             ";
-            con.Execute(sql, data);
+            SELECT LAST_INSERT_ID();";
+            int id = con.ExecuteScalar<int>(sql, data);
+            return id;
         }
 
     }
