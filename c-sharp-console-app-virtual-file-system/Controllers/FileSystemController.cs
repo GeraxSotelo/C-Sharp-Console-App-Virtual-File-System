@@ -1,4 +1,6 @@
-﻿using c_sharp_console_app_virtual_file_system.Services;
+﻿using c_sharp_console_app_virtual_file_system.Models;
+using c_sharp_console_app_virtual_file_system.Services;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,16 +18,18 @@ namespace c_sharp_console_app_virtual_file_system
             {
                 Print();
                 Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
-                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}/ # ");
+                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}: / ");
                 GetUserInput();
             }
         }
 
         private void GetUserInput()
         {
-            string input = Console.ReadLine().ToLower();
+            string input = Console.ReadLine().ToLower() + " ";
+            string command = input.Substring(0, input.IndexOf(" "));
+            string option = input.Substring(input.IndexOf(" ") + 1).Trim();
 
-            switch(input)
+            switch(command)
             {
                 case "q":
                 case "e":
@@ -36,6 +40,10 @@ namespace c_sharp_console_app_virtual_file_system
                     break;
                 case "ls":
                     _fss.Ls();
+                    break;
+                case "mkdir":
+                    Directory data = new Directory(option) { ParentId = 3};
+                    _fss.Mkdir(data);
                     break;
                 default:
                     Console.WriteLine("Invalid input");
