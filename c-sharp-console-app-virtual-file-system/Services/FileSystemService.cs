@@ -8,7 +8,7 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system.Services
 {
-    class FileSystemService
+    public class FileSystemService
     {
         public FileSystem fileSystem { get; set; }
         public List<string> Messages {get; set;}

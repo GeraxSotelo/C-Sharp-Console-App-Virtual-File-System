@@ -7,7 +7,7 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system
 {
-    class FileSystemController
+    public class FileSystemController
     {
         private bool _running = true;
         private FileSystemService _fss = new FileSystemService();
@@ -23,7 +23,7 @@ namespace c_sharp_console_app_virtual_file_system
             }
         }
 
-        private void GetUserInput()
+        public string GetUserInput()
         {
             string input = Console.ReadLine().ToLower() + " ";
             string command = input.Substring(0, input.IndexOf(" "));
@@ -49,6 +49,7 @@ namespace c_sharp_console_app_virtual_file_system
                     Console.WriteLine("Invalid input");
                     break;
             }
+            return command;
         }
 
         public void Print()

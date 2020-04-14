@@ -5,7 +5,7 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system.Models
 {
-    class File : IFile
+    public class File : IFile
     {
         public string Name { get; set; }
         public int ParentDirectoryId { get; set; }

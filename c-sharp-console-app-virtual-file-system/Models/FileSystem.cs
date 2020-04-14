@@ -6,7 +6,7 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system.Models
 {
-    class FileSystem : IFileSystem
+    public class FileSystem : IFileSystem
     {
         private readonly string _cs = @"server=den1.mysql1.gear.host;userid=filesystem;password=Vm4Bb6z2ai__;database=filesystem";
         private MySqlConnection _con { get;}
