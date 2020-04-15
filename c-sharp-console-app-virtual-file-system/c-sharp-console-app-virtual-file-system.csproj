@@ -11,8 +11,4 @@
     <PackageReference Include="mysqlconnector" Version="0.63.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
