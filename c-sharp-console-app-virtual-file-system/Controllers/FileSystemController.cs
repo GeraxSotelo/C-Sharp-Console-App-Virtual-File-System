@@ -10,15 +10,24 @@ namespace c_sharp_console_app_virtual_file_system
     public class FileSystemController
     {
         private bool _running = true;
-        private FileSystemService _fss = new FileSystemService();
+        private FileSystem fileSystem { get; set; }
+        private UtilityService _us { get; set; }
+        private DirectoryService _ds { get; set; }
+
+        //CONSTRUCTOR
+        public FileSystemController()
+        {
+            fileSystem = new FileSystem();
+            _us = new UtilityService();
+            _ds = new DirectoryService();
+        }
 
         public void Run()
         {
             while (_running)
             {
-                Print();
                 Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
-                Console.Write($"{_fss.fileSystem.CurrentDirectory.Name}: / ");
+                Console.Write($"{fileSystem.CurrentDirectory.Name}: / ");
                 GetUserInput();
             }
         }
@@ -41,14 +50,14 @@ namespace c_sharp_console_app_virtual_file_system
                     _running = false;
                     break;
                 case "help":
-                    _fss.Help();
+                    _us.Help();
                     break;
                 case "ls":
-                    _fss.Ls();
+                    _us.Ls(fileSystem.CurrentDirectory);
                     break;
                 case "mkdir":
                     Directory data = new Directory(option) { ParentId = 3 };
-                    _fss.Mkdir(data);
+                    _ds.Mkdir(data);
                     break;
                 default:
                     Console.WriteLine("Invalid input");
@@ -57,13 +66,5 @@ namespace c_sharp_console_app_virtual_file_system
             return "success";
         }
 
-        public void Print()
-        {
-            foreach (string msg in _fss.Messages)
-            {
-                Console.WriteLine(msg);
-            }
-            _fss.Messages.Clear();
-        }
     }
 }
