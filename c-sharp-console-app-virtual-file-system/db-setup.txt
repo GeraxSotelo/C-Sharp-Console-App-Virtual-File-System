@@ -4,3 +4,6 @@ name VARCHAR(255) NOT NULL,
 parentId int NOT NULL, 
 PRIMARY KEY (id)
 )
+
+SELECT *
+FROM  directories

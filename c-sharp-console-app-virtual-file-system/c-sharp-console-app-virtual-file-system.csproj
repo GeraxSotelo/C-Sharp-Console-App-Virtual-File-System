@@ -11,4 +11,19 @@
     <PackageReference Include="mysqlconnector" Version="0.63.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Repositories\RepoResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RepoResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Repositories\RepoResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RepoResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
