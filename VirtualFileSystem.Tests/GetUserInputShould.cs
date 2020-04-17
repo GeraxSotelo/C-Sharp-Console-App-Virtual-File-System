@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using c_sharp_console_app_virtual_file_system;
+using c_sharp_console_app_virtual_file_system.Models;
 
 namespace VirtualFileSystem.Tests
 {
@@ -10,27 +11,29 @@ namespace VirtualFileSystem.Tests
         [Fact]
         public void CorrectUserInputCommand()
         {
-            string expected = "mkdir ";
-            string actual = new FileSystemController().CheckInput("MkDir ");
+            string expected = "mkdir";
+            Input actual = new FileSystemController().AnalyzeInput("MkDir ");
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.Command);
         }
 
         [Fact]
         public void NoSpecialCharacters()
         {
+            //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
             string pattern = @"^[A-Za-z0-9 _]*$";
-            string actual = new FileSystemController().CheckInput("mkdir ");
-            Assert.Matches(pattern, actual);
+            //passing in invalid input in AnalyzeInput() will return the string "Invalid input"
+            Input actual = new FileSystemController().AnalyzeInput("mkdir ");
+            Assert.Matches(pattern, actual.Command);
         }
 
         [Fact]
         public void IncorrectUserInputCommand()
         {
             string expected = "Invalid input";
-            string actual = new FileSystemController().CheckInput("abc ");
+            Input actual = new FileSystemController().AnalyzeInput("abc ");
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.Command);
         }
     }
 }

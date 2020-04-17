@@ -12,9 +12,10 @@ namespace c_sharp_console_app_virtual_file_system
     {
         private bool _running = true;
         public RootDirectory Root { get; }
-        private FileSystem fileSystem { get; set; }
-        private UtilityService _us { get; set; }
-        private DirectoryService _ds { get; set; }
+        private FileSystem fileSystem;
+        private UtilityService _us;
+        private DirectoryService _ds;
+        private CommandParser cp = new CommandParser();
 
         //CONSTRUCTOR
         public FileSystemController()
@@ -42,17 +43,15 @@ namespace c_sharp_console_app_virtual_file_system
 
         public void GetUserInput()
         {
-            string input = Console.ReadLine() + " ";
-            CheckInput(input);
+            string userInput = Console.ReadLine() + " ";
+            AnalyzeInput(userInput);
         }
 
-        public string CheckInput(string input)
+        public Input AnalyzeInput(string input)
         {
-            input = input.ToLower();
-            string command = input.Substring(0, input.IndexOf(" "));
-            string option = input.Substring(input.IndexOf(" ") + 1).Trim();
+            Input parsedInput = cp.ParseInput(input);
 
-            switch (command)
+            switch (parsedInput.Command)
             {
                 case "q":
                 case "e":
@@ -65,7 +64,11 @@ namespace c_sharp_console_app_virtual_file_system
                     _us.Ls(fileSystem.CurrentDirectory);
                     break;
                 case "mkdir":
-                    Directory data = new Directory(option) { ParentId = fileSystem.CurrentDirectory.Id };
+                    if(parsedInput.Option == "")
+                    {
+                        parsedInput.Option = "New Folder";
+                    }
+                    Directory data = new Directory(parsedInput.Option) { ParentId = fileSystem.CurrentDirectory.Id };
                     try
                     {
                         _ds.Mkdir(data);
@@ -75,14 +78,13 @@ namespace c_sharp_console_app_virtual_file_system
                     {
                         Console.WriteLine(e.Message);
                     }
-                   
                     break;
                 default:
-                    input = "Invalid input";
-                    Console.WriteLine(input);
+                    parsedInput.Command = "Invalid input";
+                    Console.WriteLine(parsedInput.Command);
                     break;
             }
-            return input;
+            return parsedInput;
         }
 
     }
