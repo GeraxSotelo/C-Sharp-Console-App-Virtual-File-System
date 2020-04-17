@@ -27,14 +27,15 @@ namespace c_sharp_console_app_virtual_file_system.Services
 
         public void Ls(IDirectory currentDirectory)
         {
-            foreach (Directory d in currentDirectory.Directories)
-            {
-                Messages.Add($"\n{d.Name}");
-            }
-            foreach (var f in currentDirectory.Files)
-            {
-                Messages.Add(f.Name);
-            }
+            Messages.Add("Ls method");
+            //foreach (Directory d in currentDirectory.Directories)
+            //{
+            //    Messages.Add($"\n{d.Name}");
+            //}
+            //foreach (var f in currentDirectory.Files)
+            //{
+            //    Messages.Add(f.Name);
+            //}
             Print();
         }
 

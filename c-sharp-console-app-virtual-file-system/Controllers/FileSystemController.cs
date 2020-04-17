@@ -11,7 +11,7 @@ namespace c_sharp_console_app_virtual_file_system
     public class FileSystemController
     {
         private bool _running = true;
-        public RootDirectory root { get; } = new RootDirectory("root");
+        public RootDirectory Root { get; }
         private FileSystem fileSystem { get; set; }
         private UtilityService _us { get; set; }
         private DirectoryService _ds { get; set; }
@@ -21,8 +21,8 @@ namespace c_sharp_console_app_virtual_file_system
         {
             _us = new UtilityService();
             _ds = new DirectoryService();
-            root = GetRootDirectory();
-            fileSystem = new FileSystem(root);
+            Root = GetRootDirectory();
+            fileSystem = new FileSystem(Root);
         }
 
         public RootDirectory GetRootDirectory()
@@ -66,7 +66,16 @@ namespace c_sharp_console_app_virtual_file_system
                     break;
                 case "mkdir":
                     Directory data = new Directory(option) { ParentId = 3 };
-                    _ds.Mkdir(data);
+                    try
+                    {
+                        _ds.Mkdir(data);
+                        Console.WriteLine("Successfully created");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                   
                     break;
                 default:
                     input = "Invalid input";

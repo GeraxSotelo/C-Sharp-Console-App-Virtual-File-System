@@ -8,20 +8,15 @@ namespace c_sharp_console_app_virtual_file_system.Models
 {
     public class FileSystem : IFileSystem
     {
-        public RootDirectory root { get; set; }
+        public RootDirectory Root { get; set; }
         public IDirectory CurrentDirectory { get; set; }
         
         public void Setup()
         {
-            RootDirectory Root = root;
-            //RootDirectory Root = new RootDirectory("root");
 
             Directory TestDirectory = new Directory("test directory.jpg");
 
             File TestFile = new File("test file.txt");
-
-            Root.Directories.Add(TestDirectory);
-            Root.Files.Add(TestFile);
 
             CurrentDirectory = Root;
 
@@ -31,7 +26,7 @@ namespace c_sharp_console_app_virtual_file_system.Models
         //CONSTRUCTOR
         public FileSystem(RootDirectory root)
         {
-            this.root = root;
+            this.Root = root;
             Setup();
         }
     }

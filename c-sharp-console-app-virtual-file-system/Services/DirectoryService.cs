@@ -10,10 +10,11 @@ namespace c_sharp_console_app_virtual_file_system.Services
     class DirectoryService
     {
         private readonly DirectoryRepository _repo;
-
+        public List<string> Messages { get; set; }
         public DirectoryService()
         {
             _repo = new DirectoryRepository();
+            Messages = new List<string>();
         }
 
         public RootDirectory GetRootDirectory()
@@ -35,5 +36,15 @@ namespace c_sharp_console_app_virtual_file_system.Services
         {
             _repo.Mkdir(data);
         }
+
+        public void Print()
+        {
+            foreach (string msg in Messages)
+            {
+                Console.WriteLine(msg);
+            }
+            Messages.Clear();
+        }
+
     }
 }
