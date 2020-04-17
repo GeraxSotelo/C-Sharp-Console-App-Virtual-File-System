@@ -65,7 +65,7 @@ namespace c_sharp_console_app_virtual_file_system
                     _us.Ls(fileSystem.CurrentDirectory);
                     break;
                 case "mkdir":
-                    Directory data = new Directory(option) { ParentId = 3 };
+                    Directory data = new Directory(option) { ParentId = fileSystem.CurrentDirectory.Id };
                     try
                     {
                         _ds.Mkdir(data);
