@@ -6,10 +6,13 @@ PRIMARY KEY (id)
 
 CREATE TABLE directories (
 id int NOT NULL AUTO_INCREMENT,
-name VARCHAR(255) NOT NULL UNIQUE,
+name VARCHAR(255) NOT NULL,
 parentId int NOT NULL, 
 PRIMARY KEY (id)
 )
+
+SELECT *
+FROM  rootDirectory
 
 SELECT *
 FROM  directories

@@ -17,11 +17,11 @@ namespace VirtualFileSystem.Tests
         }
 
         [Fact]
-        public void Blah()
+        public void NoSpecialCharacters()
         {
+            string pattern = @"^[A-Za-z0-9 _]*$";
             string actual = new FileSystemController().CheckInput("mkdir ");
-
-            Assert.Matches("[a-z]", actual.Substring(0,1));
+            Assert.Matches(pattern, actual);
         }
 
         [Fact]

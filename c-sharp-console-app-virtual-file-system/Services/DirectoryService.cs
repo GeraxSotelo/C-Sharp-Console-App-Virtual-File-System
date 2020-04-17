@@ -26,7 +26,8 @@ namespace c_sharp_console_app_virtual_file_system.Services
                 int id = _repo.CreateRootDirectory(root);
                 root.Id = id;
                 return root;
-            } else
+            } 
+            else
             {
                 return found;
             }
