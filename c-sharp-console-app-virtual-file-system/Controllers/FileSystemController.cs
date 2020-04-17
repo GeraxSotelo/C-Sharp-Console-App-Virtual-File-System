@@ -1,4 +1,5 @@
-﻿using c_sharp_console_app_virtual_file_system.Models;
+﻿using c_sharp_console_app_virtual_file_system.Interfaces;
+using c_sharp_console_app_virtual_file_system.Models;
 using c_sharp_console_app_virtual_file_system.Services;
 using MySql.Data.MySqlClient;
 using System;
@@ -10,6 +11,7 @@ namespace c_sharp_console_app_virtual_file_system
     public class FileSystemController
     {
         private bool _running = true;
+        public RootDirectory root { get; } = new RootDirectory("root");
         private FileSystem fileSystem { get; set; }
         private UtilityService _us { get; set; }
         private DirectoryService _ds { get; set; }
@@ -17,9 +19,15 @@ namespace c_sharp_console_app_virtual_file_system
         //CONSTRUCTOR
         public FileSystemController()
         {
-            fileSystem = new FileSystem();
             _us = new UtilityService();
             _ds = new DirectoryService();
+            root = GetRootDirectory();
+            fileSystem = new FileSystem(root);
+        }
+
+        public RootDirectory GetRootDirectory()
+        {
+            return _ds.GetRootDirectory();
         }
 
         public void Run()
@@ -34,12 +42,13 @@ namespace c_sharp_console_app_virtual_file_system
 
         public void GetUserInput()
         {
-            string input = Console.ReadLine().ToLower() + " ";
+            string input = Console.ReadLine() + " ";
             CheckInput(input);
         }
 
         public string CheckInput(string input)
         {
+            input = input.ToLower();
             string command = input.Substring(0, input.IndexOf(" "));
             string option = input.Substring(input.IndexOf(" ") + 1).Trim();
 
@@ -60,10 +69,11 @@ namespace c_sharp_console_app_virtual_file_system
                     _ds.Mkdir(data);
                     break;
                 default:
-                    Console.WriteLine("Invalid input");
+                    input = "Invalid input";
+                    Console.WriteLine(input);
                     break;
             }
-            return "success";
+            return input;
         }
 
     }

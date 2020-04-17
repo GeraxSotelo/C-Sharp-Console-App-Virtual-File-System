@@ -1,6 +1,12 @@
-﻿CREATE TABLE directories (
+﻿CREATE TABLE rootDirectory (
 id int NOT NULL AUTO_INCREMENT,
-name VARCHAR(255) NOT NULL,
+name VARCHAR(255) NOT NULL UNIQUE,
+PRIMARY KEY (id)
+)
+
+CREATE TABLE directories (
+id int NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL UNIQUE,
 parentId int NOT NULL, 
 PRIMARY KEY (id)
 )

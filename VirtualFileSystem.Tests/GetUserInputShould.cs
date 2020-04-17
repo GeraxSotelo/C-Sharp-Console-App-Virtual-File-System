@@ -8,10 +8,27 @@ namespace VirtualFileSystem.Tests
     public class GetUserInputShould
     {
         [Fact]
-        public void UserInputCommand()
+        public void CorrectUserInputCommand()
         {
-            string expected = "success";
+            string expected = "mkdir ";
+            string actual = new FileSystemController().CheckInput("MkDir ");
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Blah()
+        {
             string actual = new FileSystemController().CheckInput("mkdir ");
+
+            Assert.Matches("[a-z]", actual.Substring(0,1));
+        }
+
+        [Fact]
+        public void IncorrectUserInputCommand()
+        {
+            string expected = "Invalid input";
+            string actual = new FileSystemController().CheckInput("abc ");
 
             Assert.Equal(expected, actual);
         }

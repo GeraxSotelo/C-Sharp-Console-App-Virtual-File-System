@@ -7,6 +7,7 @@ namespace c_sharp_console_app_virtual_file_system.Models
 {
     public class File : IFile
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int ParentDirectoryId { get; set; }
 

@@ -5,8 +5,9 @@ using System.Text;
 
 namespace c_sharp_console_app_virtual_file_system.Models
 {
-    class RootDirectory : IDirectory
+    public class RootDirectory : IDirectory
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<Directory> Directories { get; set; }
         public List<File> Files { get; set; }
