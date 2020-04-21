@@ -45,7 +45,24 @@ namespace c_sharp_console_app_virtual_file_system.Services
             {
                 throw new Exception("Invalid directory name.");
             }
-            _repo.Mkdir(data);
+            try
+            {
+                int id = _repo.Mkdir(data);
+                data.Id = id;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            if(data.Id > 0)
+            {
+                MkdirRelationship(data);
+            }
+        }
+
+        public void MkdirRelationship(Directory data)
+        {
+            _repo.MkdirRelationship(data);
         }
 
         public void Print()

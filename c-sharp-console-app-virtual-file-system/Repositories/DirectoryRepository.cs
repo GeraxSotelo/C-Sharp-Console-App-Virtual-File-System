@@ -45,5 +45,16 @@ namespace c_sharp_console_app_virtual_file_system.Repositories
             int id = _conn.ExecuteScalar<int>(sql, data);
             return id;
         }
+
+        internal void MkdirRelationship(Directory data)
+        {
+            string sql = @"
+            INSERT INTO directorydirectories
+            (directoryId, parentId)
+            VALUES
+            (@Id, @ParentId);
+            ";
+            _conn.Execute(sql, data);
+        }
     }
 }

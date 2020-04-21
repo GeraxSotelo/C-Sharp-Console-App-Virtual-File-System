@@ -11,6 +11,23 @@ parentId int NOT NULL,
 PRIMARY KEY (id)
 )
 
+CREATE TABLE directorydirectories (
+id int NOT NULL AUTO_INCREMENT,
+directoryId int NOT NULL,
+parentId int NOT NULL, 
+
+PRIMARY KEY (id),
+INDEX (parentId, directoryId),
+
+FOREIGN KEY (parentId)
+  REFERENCES directories(id)
+  ON DELETE CASCADE,
+
+FOREIGN KEY (directoryId)
+  REFERENCES directories(id)
+  ON DELETE CASCADE
+)
+
 SELECT *
 FROM  rootDirectory
 

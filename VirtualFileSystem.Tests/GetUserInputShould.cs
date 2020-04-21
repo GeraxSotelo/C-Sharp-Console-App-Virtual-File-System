@@ -27,6 +27,7 @@ namespace VirtualFileSystem.Tests
         }
 
         [Fact]
+        [Trait("Category", "Directory")]
         public void DirectyNameHasNoSpecialCharacters()
         {
             //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
