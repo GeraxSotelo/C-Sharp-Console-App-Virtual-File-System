@@ -18,22 +18,36 @@ namespace VirtualFileSystem.Tests
         }
 
         [Fact]
-        public void NoSpecialCharacters()
-        {
-            //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
-            string pattern = @"^[A-Za-z0-9 _]*$";
-            //passing in an invalid input in AnalyzeInput() will return the string "Invalid input"
-            Input actual = new FileSystemController().AnalyzeInput("mkdir test folder");
-            Assert.Matches(pattern, actual.Option);
-        }
-
-        [Fact]
         public void IncorrectUserInputCommand()
         {
             string expected = "Invalid input";
             Input actual = new FileSystemController().AnalyzeInput("abc ");
 
             Assert.Equal(expected, actual.Command);
+        }
+
+        [Fact]
+        public void DirectyNameHasNoSpecialCharacters()
+        {
+            //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
+            string pattern = @"^[A-Za-z0-9 _]*$";
+            //passing in an invalid input in AnalyzeInput() will return the string "Invalid input"
+            Input actual1 = new FileSystemController().AnalyzeInput("mkdir test folder");
+            Input actual2 = new FileSystemController().AnalyzeInput("mkdir test folder");
+            Assert.Matches(pattern, actual1.Option);
+            Assert.DoesNotMatch(pattern, actual2.Option);
+        }
+
+        [Fact]
+        public void FileNameHasNoSpecialCharacters()
+        {
+            //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
+            string pattern = @"^[A-Za-z0-9 _]*$";
+            //passing in an invalid input in AnalyzeInput() will return the string "Invalid input"
+            Input actual1 = new FileSystemController().AnalyzeInput("touch test file");
+            Input actual2 = new FileSystemController().AnalyzeInput("touch test*file");
+            Assert.Matches(pattern, actual1.Option);
+            Assert.DoesNotMatch(pattern, actual2.Option);
         }
     }
 }
