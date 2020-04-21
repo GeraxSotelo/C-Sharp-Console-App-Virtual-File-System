@@ -4,6 +4,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace c_sharp_console_app_virtual_file_system.Services
 {
@@ -35,9 +36,14 @@ namespace c_sharp_console_app_virtual_file_system.Services
 
         public void Mkdir(Directory data)
         {
-            if(data.Name == "")
+            string pattern = @"^[A-Za-z0-9 _]*$";
+            if (data.Name == "")
             {
                 data.Name = "New Folder";
+            }
+            else if (!Regex.IsMatch(data.Name, pattern))
+            {
+                throw new Exception("Invalid directory name.");
             }
             _repo.Mkdir(data);
         }

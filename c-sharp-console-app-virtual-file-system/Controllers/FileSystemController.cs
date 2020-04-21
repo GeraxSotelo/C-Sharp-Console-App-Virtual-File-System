@@ -38,7 +38,7 @@ namespace c_sharp_console_app_virtual_file_system
             while (_running)
             {
                 Console.WriteLine("\nType a command. Type 'help' for information. Type 'q' or 'e' to exit.\n");
-                Console.Write($"{fileSystem.CurrentDirectory.Name}: / ");
+                Console.Write($"{fileSystem.CurrentDirectory.Name}: # ");
                 GetUserInput();
             }
         }
@@ -70,16 +70,24 @@ namespace c_sharp_console_app_virtual_file_system
                     try
                     {
                         _ds.Mkdir(directoryData);
-                        Console.WriteLine("Successfully created");
+                        Console.WriteLine("Directory created");
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        Console.WriteLine("\n"+e.Message);
                     }
                     break;
                 case "touch":
                     File fileData = new File(parsedInput.Option) { ParentDirectoryId = fileSystem.CurrentDirectory.Id };
-                    _fs.Touch(fileData);
+                    try
+                    {
+                        _fs.Touch(fileData);
+                        Console.WriteLine("File created");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("\n"+e.Message);
+                    }
                     break;
                 default:
                     parsedInput.Command = "Invalid input";

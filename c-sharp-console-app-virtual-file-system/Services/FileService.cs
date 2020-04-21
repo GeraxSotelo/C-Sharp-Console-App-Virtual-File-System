@@ -3,6 +3,7 @@ using c_sharp_console_app_virtual_file_system.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace c_sharp_console_app_virtual_file_system.Services
 {
@@ -18,9 +19,14 @@ namespace c_sharp_console_app_virtual_file_system.Services
 
         internal void Touch(File data)
         {
-            if(data.Name == "")
+            string pattern = @"^[A-Za-z0-9 _]*$";
+            if (data.Name == "")
             {
                 data.Name = "New File.txt";
+            }
+            else if(!Regex.IsMatch(data.Name, pattern))
+            {
+                throw new Exception("Invalid file name.");
             }
             _repo.Touch(data);
         }

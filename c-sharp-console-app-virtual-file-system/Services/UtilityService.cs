@@ -21,6 +21,7 @@ namespace c_sharp_console_app_virtual_file_system.Services
         {
             Messages.Add("\nmkdir     Creates a directory.");
             Messages.Add("ls        Lists files in current working directory");
+            Messages.Add("touch     Create a file without any content");
             Messages.Add("rm        Remove a file");
             Print();
         }
@@ -28,14 +29,7 @@ namespace c_sharp_console_app_virtual_file_system.Services
         public void Ls(IDirectory currentDirectory)
         {
             Messages.Add("Ls method");
-            //foreach (Directory d in currentDirectory.Directories)
-            //{
-            //    Messages.Add($"\n{d.Name}");
-            //}
-            //foreach (var f in currentDirectory.Files)
-            //{
-            //    Messages.Add(f.Name);
-            //}
+
             Print();
         }
 
