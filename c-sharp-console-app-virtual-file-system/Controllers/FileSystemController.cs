@@ -15,6 +15,7 @@ namespace c_sharp_console_app_virtual_file_system
         private FileSystem fileSystem;
         private UtilityService _us;
         private DirectoryService _ds;
+        private FileService _fs;
         private CommandParser cp = new CommandParser();
 
         //CONSTRUCTOR
@@ -22,6 +23,7 @@ namespace c_sharp_console_app_virtual_file_system
         {
             _us = new UtilityService();
             _ds = new DirectoryService();
+            _fs = new FileService();
             Root = GetRootDirectory();
             fileSystem = new FileSystem(Root);
         }
@@ -64,20 +66,20 @@ namespace c_sharp_console_app_virtual_file_system
                     _us.Ls(fileSystem.CurrentDirectory);
                     break;
                 case "mkdir":
-                    if(parsedInput.Option == "")
-                    {
-                        parsedInput.Option = "New Folder";
-                    }
-                    Directory data = new Directory(parsedInput.Option) { ParentId = fileSystem.CurrentDirectory.Id };
+                    Directory directoryData = new Directory(parsedInput.Option) { ParentId = fileSystem.CurrentDirectory.Id };
                     try
                     {
-                        _ds.Mkdir(data);
+                        _ds.Mkdir(directoryData);
                         Console.WriteLine("Successfully created");
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
+                    break;
+                case "touch":
+                    File fileData = new File(parsedInput.Option) { ParentDirectoryId = fileSystem.CurrentDirectory.Id };
+                    _fs.Touch(fileData);
                     break;
                 default:
                     parsedInput.Command = "Invalid input";

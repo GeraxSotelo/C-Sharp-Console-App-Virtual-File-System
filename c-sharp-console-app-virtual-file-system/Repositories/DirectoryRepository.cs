@@ -11,7 +11,7 @@ namespace c_sharp_console_app_virtual_file_system.Repositories
     class DirectoryRepository
     {
         private readonly string _cs = RepoResource.ConnectionString;
-        private MySqlConnection _conn { get; }
+        private MySqlConnection _conn;
 
         //CONSTRUCTOR
         public DirectoryRepository()

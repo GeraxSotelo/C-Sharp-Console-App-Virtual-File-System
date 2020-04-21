@@ -35,6 +35,10 @@ namespace c_sharp_console_app_virtual_file_system.Services
 
         public void Mkdir(Directory data)
         {
+            if(data.Name == "")
+            {
+                data.Name = "New Folder";
+            }
             _repo.Mkdir(data);
         }
 

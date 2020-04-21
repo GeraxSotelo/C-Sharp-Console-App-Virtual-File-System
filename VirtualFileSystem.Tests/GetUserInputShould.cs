@@ -22,9 +22,9 @@ namespace VirtualFileSystem.Tests
         {
             //NOTE ^(?:[A-Za-z]+)(?:[A-Za-z0-9 _]*)$ for checking first character
             string pattern = @"^[A-Za-z0-9 _]*$";
-            //passing in invalid input in AnalyzeInput() will return the string "Invalid input"
-            Input actual = new FileSystemController().AnalyzeInput("mkdir ");
-            Assert.Matches(pattern, actual.Command);
+            //passing in an invalid input in AnalyzeInput() will return the string "Invalid input"
+            Input actual = new FileSystemController().AnalyzeInput("mkdir test folder");
+            Assert.Matches(pattern, actual.Option);
         }
 
         [Fact]
